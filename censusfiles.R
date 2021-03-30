@@ -4,8 +4,8 @@ library(dplyr)
 # setwd("/Users/andrewbell/Dropbox (Personal)/R Projects/Fixing Census Data files/")
 
 # Read csv files
-ds.hh <- read_csv("hhpub19.csv")
-ds.pp <- read_csv("pppub19.csv")
+ds.hh <- read.csv("hhpub19.csv")
+ds.pp <- read.csv("pppub19.csv")
 
 # Get rid of cols we don't need from home file, rename to id_match
 ds.hh <- ds.hh %>%
@@ -23,3 +23,5 @@ ds.combined <- merge(ds.hh, ds.pp, by = "id_match")
 
 ds.combined <- ds.combined %>%
   filter(GESTFIPS == 40)
+
+write_csv(ds.combined, file = "2019 CPS Person File - Oklahoma Residents Only.csv")
